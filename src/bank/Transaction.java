@@ -32,6 +32,7 @@ public class Transaction {
                 recipient.setBalanceDebit(recipient.getBalanceDebit() + amount);
                 System.out.println("Выполнен перевод " + amount + " от "  + sender.getName() +
                         " к " + recipient.getName());
+                System.out.println();
             } else throw new NotEnoughMoneyException(sender, amount);
 
     }
@@ -42,6 +43,7 @@ public class Transaction {
         if (recipient.getBalanceDebit() >= amount) {
             recipient.setBalanceDebit(recipient.getBalanceDebit() - amount);
             System.out.println("Выполнено снятие денег с дебетового счета " +recipient.getName() + " " + amount);
+            System.out.println();
         } else throw new NotEnoughMoneyException(recipient, amount);
     }
 
@@ -50,6 +52,7 @@ public class Transaction {
         if (recipient.getBalanceCredit() >= amount) {
             recipient.setBalanceCredit(recipient.getBalanceCredit() - amount);
             System.out.println("Выполнено снятие денег с кредитного счета " + recipient.getName() + " " + amount);
+            System.out.println();
         } else throw new NotEnoughMoneyException(recipient, amount);
     }
 
@@ -58,14 +61,16 @@ public class Transaction {
     public void doTransactionPutMoneyToCredit (double amount) {
         if (amount <= 0) throw new IllegalArgumentException("Сумма не может быть меньше нуля");
         recipient.setBalanceCredit(recipient.getBalanceCredit() + amount);
-
-
+        System.out.println("Зачислены средства на счет " + recipient.getName() + " " + amount);
+        System.out.println();
     }
 
 
     public void doTransactionPutMoneyToDebit (double amount) {
         if (amount <= 0) throw new IllegalArgumentException("Сумма не может быть меньше нуля");
         recipient.setBalanceDebit(recipient.getBalanceDebit() + amount);
+        System.out.println("Зачислены средства на счет " + recipient.getName() + " " + amount);
+        System.out.println();
     }
 
     public BankClient getRecipient() {
